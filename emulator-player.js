@@ -28,18 +28,26 @@
     return;
   }
 
-  window.EJS_player = '#game';
-  window.EJS_core = system;
-  window.EJS_gameUrl = game;
-  window.EJS_gameName = gameName;
-  window.EJS_biosUrl = '';
-  window.EJS_pathtodata = new URL('emulator/data/', window.location.href).href;
-  window.EJS_threads = false;
-  window.EJS_startOnLoaded = true;
-  window.EJS_ready = () => report('ready');
+  (async () => {
+    const romUrl = new URL(game, window.location.href);
+    romUrl.searchParams.set('atlas_cache', '2');
+    const response = await fetch(romUrl.href, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Could not load game file (HTTP ${response.status}).`);
+    const romFile = await response.blob();
 
-  const loader = document.createElement('script');
-  loader.src = new URL('emulator/data/loader.js', window.location.href).href;
-  loader.onerror = () => showError(new Error('The bundled EmulatorJS loader is missing or blocked.'));
-  document.body.appendChild(loader);
+    window.EJS_player = '#game';
+    window.EJS_core = system;
+    window.EJS_gameUrl = romFile;
+    window.EJS_gameName = gameName;
+    window.EJS_biosUrl = '';
+    window.EJS_pathtodata = new URL('emulator/data/', window.location.href).href;
+    window.EJS_threads = false;
+    window.EJS_startOnLoaded = true;
+    window.EJS_ready = () => report('ready');
+
+    const loader = document.createElement('script');
+    loader.src = new URL('emulator/data/loader.js', window.location.href).href;
+    loader.onerror = () => showError(new Error('The bundled EmulatorJS loader is missing or blocked.'));
+    document.body.appendChild(loader);
+  })().catch(showError);
 })();
