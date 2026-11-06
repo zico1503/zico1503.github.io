@@ -63,6 +63,7 @@ function startEmulation({ system, romUrl, gameName, isLocalFile = false }) {
   stopSession();
   if (isLocalFile) romObjectUrl = romUrl;
   const playerUrl = new URL('emulator-player.html', window.location.href);
+  playerUrl.searchParams.set('player_version', '2');
   playerUrl.searchParams.set('system', system);
   playerUrl.searchParams.set('game', romUrl);
   playerUrl.searchParams.set('name', gameName);
