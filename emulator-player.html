@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Arcade Atlas Player</title>
+    <style>
+      html, body, #game { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #000; }
+      body { font-family: system-ui, sans-serif; }
+      #player-error { display: none; box-sizing: border-box; padding: 24px; color: #f4f4e8; font: 14px/1.6 system-ui, sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="game"></div>
+    <div id="player-error" role="alert">The built-in player could not start. Please return to Arcade Atlas and try again.</div>
+    <script src="emulator-player.js"></script>
+  </body>
+</html>
