@@ -141,6 +141,7 @@ gameCards.forEach((card) => {
   const id = card.dataset.id;
   const activateCard = () => {
     if (id === 'starboard') openGame();
+    else if (id === 'skyline') window.location.href = 'skyline-sprint.html';
     else if (id === 'ucity') window.playBuiltinGame();
     else openGuide(id);
   };
