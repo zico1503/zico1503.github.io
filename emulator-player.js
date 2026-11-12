@@ -4,7 +4,14 @@
   const system = params.get('system');
   const game = params.get('game');
   const gameName = params.get('name') || 'Browser game';
+  const profileName = (params.get('profile') || 'Guest').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 20) || 'Guest';
   const errorBox = document.querySelector('#player-error');
+
+  function profileGameId(value) {
+    let hash = 2166136261;
+    for (let i = 0; i < value.length; i += 1) hash = Math.imul(hash ^ value.charCodeAt(i), 16777619);
+    return (hash >>> 0) % 2147483646 + 1;
+  }
 
   function report(type, detail = '') {
     window.parent.postMessage({ source: 'arcade-atlas-player', type, detail }, window.location.origin);
@@ -38,7 +45,8 @@
     window.EJS_player = '#game';
     window.EJS_core = system;
     window.EJS_gameUrl = romFile;
-    window.EJS_gameName = gameName;
+    window.EJS_gameName = `${gameName} [${profileName}]`;
+    window.EJS_gameID = profileGameId(`${profileName}|${system}|${gameName}`);
     window.EJS_biosUrl = '';
     window.EJS_pathtodata = new URL('emulator/data/', window.location.href).href;
     window.EJS_threads = false;
