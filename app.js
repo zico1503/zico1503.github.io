@@ -141,7 +141,7 @@ gameCards.forEach((card) => {
   const id = card.dataset.id;
   const activateCard = () => {
     if (id === 'starboard') openGame();
-    else if (id === 'banana') window.location.href = 'banana-catchers.html';
+    else if (id === 'banana') window.location.href = 'banana-catchers/';
     else if (id === 'ucity') window.playBuiltinGame();
     else openGuide(id);
   };

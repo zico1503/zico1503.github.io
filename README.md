@@ -1,5 +1,9 @@
 # Arcade Atlas
 
+Banana Catchers is an original, self-contained 2D fruit-catching game in [`banana-catchers/index.html`](banana-catchers/index.html). Its art and sound are generated locally by Canvas and Web Audio; it needs no downloads or external libraries. Move with ←/→ or A/D, or drag across the game. On touch screens use the on-screen arrows. Press P or Escape to pause.
+
+Username profiles use browser IndexedDB to keep personal game files local to that browser. Emulator save data is scoped by username there too; profiles have no password and do not sync between devices.
+
 A free-to-use, responsive gaming hub built as a small static website with plain HTML, CSS, and JavaScript. No package installation, paid API, sign-in, or backend is required.
 
 ## Run it
@@ -14,6 +18,7 @@ The site includes a GitHub Pages deployment workflow for free public hosting and
 
 - Search, category chips, and platform / play-method filters.
 - A playable original canvas arcade game with keyboard and touch controls.
+- A standalone Banana Catchers game with multiple jungle biomes, powerups, local high scores, sound controls, and cosmetic unlocks.
 - A built-in EmulatorJS runtime, NES and Game Boy / Color cores, and the playable Game Boy Color homebrew µCity. These emulator files are bundled locally; starting the included game does not call an emulator CDN.
 - An optional local-file picker for compatible NES and Game Boy / Color games. Personal files are read by the browser and are not uploaded to Arcade Atlas.
 - Setup guides for personal emulation, community-hosted Eaglercraft worlds, and streaming from a computer the visitor owns.
